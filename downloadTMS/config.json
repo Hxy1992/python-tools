@@ -1,0 +1,10 @@
+{
+    "baseUrl":"http://mt1.google.cn/vt/lyrs=y&hl=zh-CN&gl=CN&src=app&x={x}&y={y}&z={z}&s=G",
+    "pictureType":".png",
+    "zoomMin":10,
+    "zoomMax":12,
+    "southEdge":25.9161,
+    "northEdge":26.1852,
+    "westEdge":119.079,
+    "eastEdge":119.528
+}
