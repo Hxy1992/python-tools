@@ -84,7 +84,7 @@ def downloadUrl():
         if minLat < 0:
             minLat = 0
         maxLat = max(bottom_tile, top_tile)
-        print('正在下载瓦片层级：'+ str(z) + '/' + str(zmax) + '，瓦片总数' + str(2*math.pow(2,z)))
+        print('正在下载瓦片层级：'+ str(z) + '/' + str(zmax) + '，瓦片总数' + str((maxLong-minLong)*(maxLat-minLat))
         for x in range(minLong,maxLong):
                 path=str(z)+"\\"+str(x)
                 temppath=downloadPath+path
