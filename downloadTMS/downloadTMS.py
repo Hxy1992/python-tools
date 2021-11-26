@@ -41,9 +41,12 @@ def mkdir(path):
 def long2tile(lon, zoom) :
     return (math.floor((lon + 180) / 360 * math.pow(2, zoom)))
 
-# 经纬度转瓦片行列号
-def lat2tile(lat, zoom):
+# 经纬度转瓦片行列号Google
+def lat2tileGoogle(lat, zoom):
     return (math.floor((1 - math.log(math.tan(lat * math.pi / 180) + 1 / math.cos(lat * math.pi / 180)) / math.pi) / 2 * math.pow(2, zoom)))
+# 经纬度转瓦片行列号TMS
+def lat2tile(lat, zoom):
+    return ((1 << zoom) - (math.floor((1 - math.log(math.tan(lat * math.pi / 180) + 1 / math.cos(lat * math.pi / 180)) / math.pi) / 2 * math.pow(2, zoom))) - 1)
 
 #下载瓦片
 def downloadUrl():
