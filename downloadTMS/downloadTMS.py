@@ -58,8 +58,9 @@ def downloadUrl():
     config=json.load(filejson) #把json串变成python的数据类型
 
     # 下载范围
+    # TODO 经纬度为负数时，计算瓦片有问题
     zmin = config['zoomMin']
-    zmax = config['zoomMax']
+    zmax = config['zoomMax'] + 1
     south_edge = config['southEdge']
     north_edge = config['northEdge']
     west_edge = config['westEdge']
@@ -73,14 +74,17 @@ def downloadUrl():
     img_error = 0
     # 遍历URL，获取数据
     for z in range(zmin,zmax):
-        top_tile = lat2tile(north_edge, z)
+        top_tile = lat2tileGoogle(north_edge, z)
         left_tile = long2tile(west_edge, z)
-        bottom_tile = lat2tile(south_edge, z)
+        bottom_tile = lat2tileGoogle(south_edge, z)
         right_tile = long2tile(east_edge, z)
         minLong = min(left_tile, right_tile)
         maxLong = max(left_tile, right_tile)
         minLat = min(bottom_tile, top_tile)
+        if minLat < 0:
+            minLat = 0
         maxLat = max(bottom_tile, top_tile)
+        print('正在下载瓦片层级：'+ str(z) + '/' + str(zmax) + '，瓦片总数' + str(2*math.pow(2,z)))
         for x in range(minLong,maxLong):
                 path=str(z)+"\\"+str(x)
                 temppath=downloadPath+path
